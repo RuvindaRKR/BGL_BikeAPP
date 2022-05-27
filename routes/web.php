@@ -20,11 +20,3 @@ Route::get('/', function () {
   });
 
 Route::post('/process', [ProcessInputController::class, 'process'])->name('process');
-
-// Route::post('/process', function () {
-//     Request::validate([
-//         'input' => 'required',
-//     ]);
-
-//     return redirect('/');
-// });
