@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\ProcessInputController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +18,13 @@ use Inertia\Inertia;
 Route::get('/', function () {
     return Inertia::render('Main');
   });
+
+Route::post('/process', [ProcessInputController::class, 'process'])->name('process');
+
+// Route::post('/process', function () {
+//     Request::validate([
+//         'input' => 'required',
+//     ]);
+
+//     return redirect('/');
+// });
