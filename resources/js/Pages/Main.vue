@@ -2,21 +2,25 @@
   <form @submit.prevent="submit">
     <label for="input">Input:</label>
     <input id="input" v-model="form.input"/>
-    <div v-if="$page.props.errors.input">{{ $page.props.errors.input }}</div>
-    <button type="submit">Submit</button>
+    <div v-if="form.errors.input">{{ form.errors.input }}</div>
+    <button type="submit" :disabled="form.processing">Submit</button>
     <div v-if="$page.props.formData">{{ $page.props.formData }}</div>
+    <!-- <div v-if="$data.input">{{ $data.input }}</div> -->
   </form>
 </template>
 
 <script setup>
-import { reactive } from 'vue'
-import { Inertia } from '@inertiajs/inertia'
+import { useForm } from "@inertiajs/inertia-vue3"
 
-let form = reactive({
+let form = useForm({
     input: '',
 });
 
 let submit = () => {
-    Inertia.post('/process', form);
+    form.post('/process', {
+        onSuccess: (res) => {
+
+        }
+    })
 } 
 </script>

@@ -16,7 +16,7 @@ class ProcessInputController extends Controller
     public function process(Request $request)
     {
         $validated = $request->validate([
-            'input' => ['required'],
+            'input' => ['required', 'max:5'],
         ]);
 
         $input = $request->input;
