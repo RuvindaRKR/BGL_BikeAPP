@@ -5,7 +5,6 @@
     <div v-if="form.errors.input">{{ form.errors.input }}</div>
     <button type="submit" :disabled="form.processing">Submit</button>
     <div v-if="$page.props.formData">{{ $page.props.formData }}</div>
-    <!-- <div v-if="$data.input">{{ $data.input }}</div> -->
   </form>
 </template>
 
