@@ -19,5 +19,6 @@ Route::get('/', function () {
     return Inertia::render('Main');
   });
 
-Route::resource('/process', ProcessInputController::class);
+// Route::resource('/process', ProcessInputController::class);
 Route::post('/process', [ProcessInputController::class, 'process'])->name('process');
+Route::put('/process2/{id}', [ProcessInputController::class, 'update']);
