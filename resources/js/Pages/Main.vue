@@ -3,7 +3,7 @@
     <label for="input">Input:</label>
     <input id="input" v-model="form.input"/>
     <div v-if="form.errors.input">{{ form.errors.input }}</div>
-    <button type="submit" :disabled="form.processing">Submit</button>
+    <button type="submit" :disabled="form.processing" class="btn btn-primary">Submit</button>
     <div v-if="$page.props.bikeid">{{ $page.props.bikeid }}</div>
     <div v-if="$page.props.msg">{{ $page.props.msg }}</div>
     <div v-if="$page.props.bike">OUTPUT: ({{ $page.props.bike.placeX }},{{ $page.props.bike.placeY }} ), {{ $page.props.bike.direction }}</div>
