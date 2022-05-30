@@ -15,11 +15,6 @@ class ProcessInputController extends Controller
             'input' => ['required', 'max:15'],
         ]);
 
-        // $grid = new Grid();
-        // $grid->SizeX = 7;
-        // $grid->SizeY = 7;
-        // $grid->save();
-
         $msg = '';
         $bike = null;
         $placeX = null;
@@ -29,19 +24,19 @@ class ProcessInputController extends Controller
         $input = $request->input;
         $input_split1 = explode(" ", $input);
 
+        // Get bike object from db using id
         if($bikeid != 0){
             $bike = Bike::find($bikeid);
         }
-        elseif($bikeid == 0 && strcmp($input_split1[0], 'PLACE') != 0){
+        elseif($bikeid == 0 && strcmp($input_split1[0], 'PLACE') != 0){         // Return if the first command is not a place command 
             return Inertia::render('Main', ['msg' => 'Place the bike first!']);
         }
 
         if(strcmp($input_split1[0], 'PLACE') == 0){
-            //self::placeCommand($input_split[1]);
             $input_split2 = explode(",", $input_split1[1]);
 
             if(is_numeric($input_split2[0]) && is_numeric($input_split2[1])){
-                if(($input_split2[0]>=0 && $input_split2[0]<=7) && ($input_split2[1]>=0 && $input_split2[1]<=7)){
+                if(($input_split2[0]>=0 && $input_split2[0]<=7) && ($input_split2[1]>=0 && $input_split2[1]<=7)){  // Check if the input parameters are within grid size
                     $placeX = $input_split2[0];
                     $placeY = $input_split2[1];
 
@@ -73,12 +68,12 @@ class ProcessInputController extends Controller
                 $msg = 'Invalid position values';
             }  
         }
-        elseif(!array_key_exists(1, $input_split1) && $bikeid != 0){
+        elseif(!array_key_exists(1, $input_split1) && $bikeid != 0){            // Check if the input has only 1 argument
             $placeX = $bike->placeX;
             $placeY = $bike->placeY;
             $direction = $bike->direction;
 
-            if(strcmp($input_split1[0], 'FORWARD') == 0){
+            if(strcmp($input_split1[0], 'FORWARD') == 0){                       // Process teh FORWARD command
                 if($direction == 'NORTH'){
                     if(($placeY-7) != 0){
                         $placeY += 1;
@@ -112,7 +107,7 @@ class ProcessInputController extends Controller
                     }
                 }
             }
-            elseif(strcmp($input_split1[0], 'TURN_LEFT') == 0){
+            elseif(strcmp($input_split1[0], 'TURN_LEFT') == 0){                 // Process the TURN_LEFT command
                 if($direction == 'NORTH'){
                     $direction = 'WEST';
                 }
@@ -126,7 +121,7 @@ class ProcessInputController extends Controller
                     $direction = 'SOUTH';
                 }
             }
-            elseif(strcmp($input_split1[0], 'TURN_RIGHT') == 0){
+            elseif(strcmp($input_split1[0], 'TURN_RIGHT') == 0){                // Process the TURN_RIGHT command
                 if($direction == 'NORTH'){
                     $direction = 'EAST';
                 }
@@ -140,7 +135,7 @@ class ProcessInputController extends Controller
                     $direction = 'NORTH';
                 }
             }
-            elseif(strcmp($input_split1[0], 'GPS_REPORT') == 0){
+            elseif(strcmp($input_split1[0], 'GPS_REPORT') == 0){                // Return bike object for the GPS_REPORT
                 return Inertia::render('Main', ['bikeid' => $bikeid, 'msg' => $msg, 'bike' => $bike]);
             }
             else{
@@ -151,7 +146,7 @@ class ProcessInputController extends Controller
             $msg = 'Invalid command';
         }
 
-
+        // Save bike attributes to db
         $bike->placeX = $placeX;
         $bike->placeY = $placeY;
         $bike->direction = $direction;
