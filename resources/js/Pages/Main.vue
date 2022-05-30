@@ -5,6 +5,8 @@
     <div v-if="form.errors.input">{{ form.errors.input }}</div>
     <button type="submit" :disabled="form.processing">Submit</button>
     <div v-if="$page.props.bikeid">{{ $page.props.bikeid }}</div>
+    <div v-if="$page.props.msg">{{ $page.props.msg }}</div>
+    <div v-if="$page.props.bike">OUTPUT: ({{ $page.props.bike.placeX }},{{ $page.props.bike.placeY }} ), {{ $page.props.bike.direction }}</div>
   </form>
 </template>
 
@@ -13,6 +15,7 @@ import { useForm } from "@inertiajs/inertia-vue3"
 
 const props = defineProps({
     bikeid: { type: Number, default: 0 },
+    msg: { type: String }
 });
 
 let form = useForm({
@@ -20,7 +23,7 @@ let form = useForm({
 });
 
 let submit = (id) => {
-    form.put('/process2/' + id,  {
+    form.put('/process/' + id,  {
         onSuccess: (res) => {
         }
     })

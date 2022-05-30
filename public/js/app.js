@@ -19510,6 +19510,9 @@ __webpack_require__.r(__webpack_exports__);
     bikeid: {
       type: Number,
       "default": 0
+    },
+    msg: {
+      type: String
     }
   },
   setup: function setup(__props, _ref) {
@@ -19521,7 +19524,7 @@ __webpack_require__.r(__webpack_exports__);
     });
 
     var submit = function submit(id) {
-      form.put('/process2/' + id, {
+      form.put('/process/' + id, {
         onSuccess: function onSuccess(res) {}
       });
     };
@@ -19569,6 +19572,12 @@ var _hoisted_3 = ["disabled"];
 var _hoisted_4 = {
   key: 1
 };
+var _hoisted_5 = {
+  key: 2
+};
+var _hoisted_6 = {
+  key: 3
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("form", {
     onSubmit: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
@@ -19589,6 +19598,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, "Submit", 8
   /* PROPS */
   , _hoisted_3), _ctx.$page.props.bikeid ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.bikeid), 1
+  /* TEXT */
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.$page.props.msg ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.msg), 1
+  /* TEXT */
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.$page.props.bike ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_6, "OUTPUT: (" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.bike.placeX) + "," + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.bike.placeY) + " ), " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.bike.direction), 1
   /* TEXT */
   )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 32
   /* HYDRATE_EVENTS */
