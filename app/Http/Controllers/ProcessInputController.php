@@ -9,13 +9,7 @@ use Inertia\Inertia;
 
 class ProcessInputController extends Controller
 {
-
-    public function index(Request $request)
-    {
-        return Inertia::render('Main');
-    }
-
-    public function update(Request $request, $id)
+    public function process(Request $request, $bikeid)
     {
         $validated = $request->validate([
             'input' => ['required', 'max:15'],
@@ -26,26 +20,28 @@ class ProcessInputController extends Controller
         // $grid->SizeY = 7;
         // $grid->save();
 
-        $bikeid = null;
-        if($id != 0){
-            $bikeid = $id;
-        }
-
-        $input = $request->input;
-        $input_split1 = explode(" ", $input);
-
         $msg = '';
         $bike = null;
         $placeX = null;
         $placeY = null;
         $direction = null;
 
+        $input = $request->input;
+        $input_split1 = explode(" ", $input);
+
+        if($bikeid != 0){
+            $bike = Bike::find($bikeid);
+        }
+        elseif($bikeid == 0 && strcmp($input_split1[0], 'PLACE') != 0){
+            return Inertia::render('Main', ['msg' => 'Place the bike first!']);
+        }
+
         if(strcmp($input_split1[0], 'PLACE') == 0){
             //self::placeCommand($input_split[1]);
             $input_split2 = explode(",", $input_split1[1]);
 
             if(is_numeric($input_split2[0]) && is_numeric($input_split2[1])){
-                if($input_split2[0]<=7 && $input_split2[1]<=7){
+                if(($input_split2[0]>=0 && $input_split2[0]<=7) && ($input_split2[1]>=0 && $input_split2[1]<=7)){
                     $placeX = $input_split2[0];
                     $placeY = $input_split2[1];
 
@@ -64,58 +60,104 @@ class ProcessInputController extends Controller
                     else{
                         $msg = 'Invalid facing direction';
                     }
+
+                    if($direction != null && $bikeid == 0){
+                        $bike = new Bike();
+                    }
                 }
                 else{
-                    $msg = 'Position values exceeds grid size';
-                }
-                
+                    $msg = 'Invalid position values';
+                }  
             }
             else{
                 $msg = 'Invalid position values';
             }  
         }
-        elseif(!array_key_exists(1, $input_split1)){
-            if(strcmp($input_split1[0], 'FORWARD') == 0){
+        elseif(!array_key_exists(1, $input_split1) && $bikeid != 0){
+            $placeX = $bike->placeX;
+            $placeY = $bike->placeY;
+            $direction = $bike->direction;
 
+            if(strcmp($input_split1[0], 'FORWARD') == 0){
+                if($direction == 'NORTH'){
+                    if(($placeY-7) != 0){
+                        $placeY += 1;
+                    }
+                    else{
+                        $msg = 'Edge of grid reached!';
+                    }
+                }
+                elseif($direction == 'SOUTH'){
+                    if((7-$placeY) != 7){
+                        $placeY -= 1;
+                    }
+                    else{
+                        $msg = 'Edge of grid reached!';
+                    }
+                }
+                elseif($direction == 'EAST'){
+                    if(($placeX-7) != 0){
+                        $placeX += 1;
+                    }
+                    else{
+                        $msg = 'Edge of grid reached!';
+                    }
+                }
+                elseif($direction == 'WEST'){
+                    if((7-$placeX) != 7){
+                        $placeX -= 1;
+                    }
+                    else{
+                        $msg = 'Edge of grid reached!';
+                    }
+                }
             }
             elseif(strcmp($input_split1[0], 'TURN_LEFT') == 0){
-    
+                if($direction == 'NORTH'){
+                    $direction = 'WEST';
+                }
+                elseif($direction == 'SOUTH'){
+                    $direction = 'EAST';
+                }
+                elseif($direction == 'EAST'){
+                    $direction = 'NORTH';
+                }
+                elseif($direction == 'WEST'){
+                    $direction = 'SOUTH';
+                }
             }
             elseif(strcmp($input_split1[0], 'TURN_RIGHT') == 0){
-                
+                if($direction == 'NORTH'){
+                    $direction = 'EAST';
+                }
+                elseif($direction == 'SOUTH'){
+                    $direction = 'WEST';
+                }
+                elseif($direction == 'EAST'){
+                    $direction = 'SOUTH';
+                }
+                elseif($direction == 'WEST'){
+                    $direction = 'NORTH';
+                }
             }
             elseif(strcmp($input_split1[0], 'GPS_REPORT') == 0){
-                
+                return Inertia::render('Main', ['bikeid' => $bikeid, 'msg' => $msg, 'bike' => $bike]);
             }
             else{
-                $msg = 'Invalid movement';
+                $msg = 'Invalid command';
             }
         }
         else{
             $msg = 'Invalid command';
         }
 
-        if($bikeid == null){
-            if($direction != null){
-                $bike = new Bike();
-                $bike->placeX = $placeX;
-                $bike->placeY = $placeY;
-                $bike->direction= $direction;
-    
-                $bike->save();
-    
-                return Inertia::render('Main', ['bikeid' => $bike->id]);
-            }
-        }
-        else{
-            return Inertia::render('Main', ['bikeid' => $id]);
-        }
-        return Inertia::render('Main', ['bikeid' => $id]);
-    }
 
-    public function placeCommand(String $input){
-        $input_split1 = explode(",", $input);
-        return Inertia::render('Main', ['formData' => $input_split1]);
-        
+        $bike->placeX = $placeX;
+        $bike->placeY = $placeY;
+        $bike->direction = $direction;
+        $bike->save();
+        $bikeid = $bike->id;
+
+        return Inertia::render('Main', ['bikeid' => $bikeid, 'msg' => $msg, 'bike' => $bike]);
     }
 }
