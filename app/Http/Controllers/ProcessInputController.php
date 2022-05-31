@@ -13,7 +13,7 @@ class ProcessInputController extends Controller
     public function process(Request $request, $bikeid)
     {
         $validated = $request->validate([
-            'input' => ['required', 'max:15'],
+            'input' => ['required', 'max:17'],
         ]);
 
         $msg = null;

@@ -48,10 +48,7 @@ let form = useForm({
 });
 
 let submit = (id) => {
-    form.post('/process/' + id,  {
-        onSuccess: (res) => {
-        }
-    })
+    form.put('/process/' + id)
 }
 </script>
 

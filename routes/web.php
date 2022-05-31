@@ -21,4 +21,4 @@ Route::get('/', function () {
 
 // Route::resource('/process', ProcessInputController::class);
 // Route::post('/process', [ProcessInputController::class, 'process'])->name('process');
-Route::post('/process/{id}', [ProcessInputController::class, 'process']);
+Route::put('/process/{id}', [ProcessInputController::class, 'process']);
