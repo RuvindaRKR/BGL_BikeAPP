@@ -5,7 +5,6 @@
       <div class="position-absolute top-0 start-50 translate-middle">
         <i class="fa-solid fa-person-biking fa-2xl">BikeAPP</i>
       </div>
-      
       <div class="mt-3">
         <div class="row">
           <div class="col-lg-4 mt-5 mx-auto form-floating">
