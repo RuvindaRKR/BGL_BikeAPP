@@ -25,7 +25,6 @@
         <div class="row">
           <div class="col-lg-4 mt-4 mx-auto">
             <div v-if="$page.props.bike">Output : ({{ $page.props.bike.placeX }},{{ $page.props.bike.placeY }} ), {{ $page.props.bike.direction }}</div>
-            <div v-if="$page.props.success">{{ $page.props.success }}</div>
           </div>
         </div>
       </div>
