@@ -17,8 +17,8 @@ use App\Http\Controllers\ProcessInputController;
 
 Route::get('/', function () {
     return Inertia::render('Main');
-  });
+  })->name('mainview');
 
 // Route::resource('/process', ProcessInputController::class);
 // Route::post('/process', [ProcessInputController::class, 'process'])->name('process');
-Route::put('/process/{id}', [ProcessInputController::class, 'process']);
+Route::post('/process/{id}', [ProcessInputController::class, 'process']);

@@ -6,6 +6,7 @@ use App\Models\Grid;
 use App\Models\Bike;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Redirect;
 
 class ProcessInputController extends Controller
 {
@@ -15,7 +16,7 @@ class ProcessInputController extends Controller
             'input' => ['required', 'max:15'],
         ]);
 
-        $msg = '';
+        $msg = null;
         $bike = null;
         $placeX = null;
         $placeY = null;
@@ -147,12 +148,16 @@ class ProcessInputController extends Controller
         }
 
         // Save bike attributes to db
-        $bike->placeX = $placeX;
-        $bike->placeY = $placeY;
-        $bike->direction = $direction;
-        $bike->save();
-        $bikeid = $bike->id;
+        if($msg == null){
+            $bike->placeX = $placeX;
+            $bike->placeY = $placeY;
+            $bike->direction = $direction;
+            $bike->save();
+            $bikeid = $bike->id;
 
-        return Inertia::render('Main', ['bikeid' => $bikeid, 'msg' => $msg, 'bike' => $bike]);
+            return Inertia::render('Main', ['bikeid' => $bikeid, 'success' => 'success']);
+        }
+        
+        return Inertia::render('Main', ['bikeid' => $bikeid, 'msg' => $msg, 'success' => 'Success']);
     }
 }
