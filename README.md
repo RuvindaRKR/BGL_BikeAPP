@@ -23,19 +23,20 @@
 
 - **Download or clone the code from gitub (https://github.com/RuvindaRKR/BGL_BikeApp)**
 - **Open gitbash or similar terminal and go to the app directory**
-- **Prerequisites: PHP 8.0.19 or above, Composer and node.js**
+- **Prerequisites: PHP 8.0.19 or above, Composer and node.js. (Download links provided in references if necessary)**
 - **Run the below commands**
 - **1. composer update**
 - **2. npm i**
 - **3. touch database/database.sqlite**
 - **4. php artisan migrate**
 - **5. php artisan serve**
-- **The serve command, serves the app on a local php server and provides the url**
+- **The serve command, hosts the app on a local php server and provides the url**
 
 
 ## File Hierarchy
 
-- **The models for the Bike can be found on the models folder. A grid model also created but not used.**
+- **The model for the Bike can be found on the Models folder.** 
+- **A grid model also created but not used. Can be used if the grid size was not constant**
 - **The main vue component is located at /resources/js/Pages/Main.vue**
 - **Controller located at /Http/Controllers/ProcessInputController/php**
 
@@ -46,5 +47,6 @@
 - **[Bootstrap 5 docs](https://getbootstrap.com/docs/5.0/getting-started/introduction/)**
 - **[Installing Bootstrap 5 on laravel with vue](https://dev.to/simodev/how-to-properly-install-bootstrap-5-and-vue-3-on-laravel-8-2e1m)**
 - **[Adding FontAwesome icons](https://dev.to/dendihandian/adding-font-awesome-to-laravel-the-laravel-mix-way-4ndj)**
-- **[Sweetalert2](https://sweetalert2.github.io/#download)**
+- **[Composer](https://getcomposer.org/download/)**
+- **[Node.js](https://nodejs.org/en/download/)**
 
