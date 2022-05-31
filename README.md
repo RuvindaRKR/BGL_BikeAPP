@@ -7,58 +7,40 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## About BikeAPP
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Built with Laravel 9 as the backend framework and Vue.js as the frontend framework. 
+Inertia.js used for server-side routing.
+Backend running on PHP 8.0.19.
+An SQLite server used to store the db files.
+Bootstrap 5 used as the CSS framework.
+FontAwesome icon used for logo.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Instructions to get the app running
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+- **Download or clone the code from gitub (https://github.com/RuvindaRKR/BGL_BikeApp)**
+- **Open gitbash or similar terminal and go to the app directory**
+- **Prerequisites: PHP 8.0.19 or above, Composer and node.js**
+- **Run the below commands**
+- **1. composer update**
+- **2. npm i**
+- **3. touch database/database.sqlite**
+- **4. php artisan migrate**
+- **5. php artisan serve**
+- **The serve command, serves the app on a local php server and provides the url)**
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## File Hierarchy
 
-## Laravel Sponsors
+The models for the Bike can be found on the models folder. A grid model also created but not used.
+The main vue component is located at /resources/js/Pages/Main.vue
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+### References
 
-### Premium Partners
+- **[Laravel 9 docs](https://laravel.com/docs/9.x/database)**
+- **[Inertia docs](https://inertiajs.com/)**
+- **[Bootstrap 5 docs](https://getbootstrap.com/docs/5.0/getting-started/introduction/)**
+- **[Installing Bootstrap 5 on laravel with vue](https://dev.to/simodev/how-to-properly-install-bootstrap-5-and-vue-3-on-laravel-8-2e1m)**
+- **[Adding FontAwesome icons](https://dev.to/dendihandian/adding-font-awesome-to-laravel-the-laravel-mix-way-4ndj)**
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
