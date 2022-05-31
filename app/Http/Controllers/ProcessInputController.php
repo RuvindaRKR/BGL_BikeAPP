@@ -33,7 +33,7 @@ class ProcessInputController extends Controller
             return Inertia::render('Main', ['msg' => 'Place the bike first!']);
         }
 
-        if(strcmp($input_split1[0], 'PLACE') == 0){
+        if(strcmp($input_split1[0], 'PLACE') == 0 && array_key_exists(1, $input_split1)){
             $input_split2 = explode(",", $input_split1[1]);
 
             if(is_numeric($input_split2[0]) && is_numeric($input_split2[1])){
