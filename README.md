@@ -9,12 +9,13 @@
 
 ## About BikeAPP
 
-Built with Laravel 9 as the backend framework and Vue.js as the frontend framework. 
-Inertia.js used for server-side routing.
-Backend running on PHP 8.0.19.
-An SQLite server used to store the db files.
-Bootstrap 5 used as the CSS framework.
-FontAwesome icon used for logo.
+- **Built with Laravel 9 as the backend framework** 
+- **Vue.js as the frontend framework.** 
+- **Bootstrap 5 used as the CSS framework.**
+- **Inertia.js used for server-side routing.**
+- **Backend running on PHP 8.0.19.**
+- **An SQLite server used to store the db files.**
+- **FontAwesome icon used for logo.**
 
 ## Instructions to get the app running
 
@@ -28,13 +29,14 @@ FontAwesome icon used for logo.
 - **3. touch database/database.sqlite**
 - **4. php artisan migrate**
 - **5. php artisan serve**
-- **The serve command, serves the app on a local php server and provides the url)**
+- **The serve command, serves the app on a local php server and provides the url**
 
 
 ## File Hierarchy
 
-The models for the Bike can be found on the models folder. A grid model also created but not used.
-The main vue component is located at /resources/js/Pages/Main.vue
+- **The models for the Bike can be found on the models folder. A grid model also created but not used.**
+- **The main vue component is located at /resources/js/Pages/Main.vue**
+- **Controller located at /Http/Controllers/ProcessInputController/php**
 
 ### References
 

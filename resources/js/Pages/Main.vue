@@ -40,7 +40,8 @@ import { Link } from '@inertiajs/inertia-vue3'
 
 const props = defineProps({
     bikeid: { type: Number, default: 0 },
-    msg: { type: String }
+    msg: { type: String },
+    status: { type: String },
 });
 
 let form = useForm({
@@ -48,7 +49,17 @@ let form = useForm({
 });
 
 let submit = (id) => {
-    form.put('/process/' + id)
+    form.put('/process/' + id, {
+      onSuccess: () => {
+        if(props.status == 'Success'){
+              Toast.fire({
+              icon:'success',
+              title:'Command Success'
+            })
+        }
+                        
+      },
+    })
 }
 </script>
 

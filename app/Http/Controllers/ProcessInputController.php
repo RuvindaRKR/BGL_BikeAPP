@@ -37,7 +37,7 @@ class ProcessInputController extends Controller
             $input_split2 = explode(",", $input_split1[1]);
 
             if(is_numeric($input_split2[0]) && is_numeric($input_split2[1])){
-                if(($input_split2[0]>=0 && $input_split2[0]<=7) && ($input_split2[1]>=0 && $input_split2[1]<=7)){  // Check if the input parameters are within grid size
+                if(($input_split2[0]>=0 && $input_split2[0]<=7) && ($input_split2[1]>=0 && $input_split2[1]<=7) && array_key_exists(2, $input_split2)){  // Check if the input parameters are within grid size
                     $placeX = $input_split2[0];
                     $placeY = $input_split2[1];
 
@@ -137,7 +137,7 @@ class ProcessInputController extends Controller
                 }
             }
             elseif(strcmp($input_split1[0], 'GPS_REPORT') == 0){                // Return bike object for the GPS_REPORT
-                return Inertia::render('Main', ['bikeid' => $bikeid, 'msg' => $msg, 'bike' => $bike]);
+                return Inertia::render('Main', ['bikeid' => $bikeid, 'msg' => $msg, 'bike' => $bike, 'status' => 'Success']);
             }
             else{
                 $msg = 'Invalid command';
@@ -155,9 +155,9 @@ class ProcessInputController extends Controller
             $bike->save();
             $bikeid = $bike->id;
 
-            return Inertia::render('Main', ['bikeid' => $bikeid, 'success' => 'success']);
+            return Inertia::render('Main', ['bikeid' => $bikeid, 'status' => 'Success']);
         }
         
-        return Inertia::render('Main', ['bikeid' => $bikeid, 'msg' => $msg, 'success' => 'Success']);
+        return Inertia::render('Main', ['bikeid' => $bikeid, 'msg' => $msg, 'status' => 'Failed']);
     }
 }
