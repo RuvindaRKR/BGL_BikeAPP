@@ -16,6 +16,7 @@
 - **Backend running on PHP 8.0.19.**
 - **An SQLite server used to store the db files.**
 - **FontAwesome icon used for logo.**
+- **Sweetalert2 used for success alerts**
 
 ## Instructions to get the app running
 
@@ -45,4 +46,5 @@
 - **[Bootstrap 5 docs](https://getbootstrap.com/docs/5.0/getting-started/introduction/)**
 - **[Installing Bootstrap 5 on laravel with vue](https://dev.to/simodev/how-to-properly-install-bootstrap-5-and-vue-3-on-laravel-8-2e1m)**
 - **[Adding FontAwesome icons](https://dev.to/dendihandian/adding-font-awesome-to-laravel-the-laravel-mix-way-4ndj)**
+- **[Sweetalert2](https://sweetalert2.github.io/#download)**
 
